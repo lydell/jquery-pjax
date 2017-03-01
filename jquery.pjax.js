@@ -403,7 +403,7 @@ function locationReplace(url) {
 
 var initialPop = true
 var initialURL = window.location.href
-var initialState = window.history.state
+var initialState = window.history && window.history.state
 
 // Initialize $.pjax.state if possible
 // Happens when reloading a page and coming forward from a different
@@ -413,7 +413,7 @@ if (initialState && initialState.container) {
 }
 
 // Non-webkit browsers don't fire an initial popstate event
-if ('state' in window.history) {
+if ('state' in (window.history || {})) {
   initialPop = false
 }
 
